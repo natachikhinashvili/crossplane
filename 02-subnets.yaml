@@ -1,0 +1,37 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: localstack-subnet-a
+  labels:
+    network: localstack-demo
+spec:
+  forProvider:
+    region: us-east-1
+    availabilityZone: us-east-1a
+    cidrBlock: 10.0.1.0/24
+    vpcIdSelector:
+      matchLabels:
+        network: localstack-demo
+    tags:
+      Name: localstack-subnet-a
+  providerConfigRef:
+    name: default
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: localstack-subnet-b
+  labels:
+    network: localstack-demo
+spec:
+  forProvider:
+    region: us-east-1
+    availabilityZone: us-east-1b
+    cidrBlock: 10.0.2.0/24
+    vpcIdSelector:
+      matchLabels:
+        network: localstack-demo
+    tags:
+      Name: localstack-subnet-b
+  providerConfigRef:
+    name: default

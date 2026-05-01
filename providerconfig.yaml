@@ -1,0 +1,26 @@
+apiVersion: aws.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: aws-creds
+      key: creds
+  endpoint:
+    hostnameImmutable: true
+    url:
+      type: Static
+      static: http://localstack.localstack.svc.cluster.local:4566
+    services:
+      - s3
+      - ec2
+      - iam
+      - sts
+    source: Custom
+  s3_use_path_style: true
+  skip_credentials_validation: true
+  skip_metadata_api_check: true
+  skip_requesting_account_id: true
